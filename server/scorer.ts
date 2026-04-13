@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk'
+import Anthropic, { type Message } from '@anthropic-ai/sdk'
 import type { CallScore } from '../src/types.js'
 
 const client = new Anthropic()
@@ -74,7 +74,8 @@ export async function scoreCall(transcript: string): Promise<CallScore> {
         schema: SCORE_SCHEMA,
       },
     },
-  } as Parameters<typeof client.messages.create>[0])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any) as Message
 
   const textBlock = response.content.find((b) => b.type === 'text')
   if (!textBlock || textBlock.type !== 'text') {

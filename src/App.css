@@ -1,0 +1,473 @@
+/* ── Layout ─────────────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  width: 100%;
+  flex: 1;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  background: #171717;
+  color: #fff;
+  padding: 1.25rem 2rem;
+  border-bottom: 3px solid #404040;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-left h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.header-left p {
+  font-size: 0.8125rem;
+  color: #a3a3a3;
+  margin-top: 0.125rem;
+}
+
+/* ── Card shell ─────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Transcript input ───────────────────────────────────── */
+.input-card {
+  padding: 1.5rem;
+}
+
+.input-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 0.25rem;
+}
+
+.input-card-sub {
+  font-size: 0.8125rem;
+  color: #737373;
+  margin-bottom: 1.25rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.input-group label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #404040;
+}
+
+.input-group input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d4d4d4;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background: #fff;
+  color: #171717;
+}
+
+.input-group input:focus {
+  border-color: #737373;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.07);
+}
+
+.textarea-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #404040;
+  display: block;
+  margin-bottom: 0.375rem;
+}
+
+.transcript-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 0.75rem;
+  border: 1px solid #d4d4d4;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  line-height: 1.65;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  color: #171717;
+  background: #fff;
+}
+
+.transcript-textarea:focus {
+  border-color: #737373;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.07);
+}
+
+.transcript-textarea::placeholder {
+  color: #a3a3a3;
+}
+
+.input-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.char-count {
+  font-size: 0.75rem;
+  color: #a3a3a3;
+}
+
+.score-btn {
+  background: #171717;
+  color: #fff;
+  border: none;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.score-btn:hover:not(:disabled) {
+  background: #404040;
+}
+
+.score-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.score-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error banner ───────────────────────────────────────── */
+.error-banner {
+  background: #f5f5f5;
+  border: 1px solid #d4d4d4;
+  color: #404040;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.error-banner strong {
+  font-weight: 600;
+}
+
+/* ── Score card ─────────────────────────────────────────── */
+.score-card {}
+
+/* Summary bar */
+.score-summary {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.score-summary-left {
+  flex: 1;
+}
+
+.score-summary-left h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 0.25rem;
+}
+
+.score-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
+  color: #737373;
+  margin-bottom: 1rem;
+}
+
+.score-meta-row span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Progress bar */
+.progress-wrap {
+  margin-top: 0.25rem;
+}
+
+.progress-bg {
+  background: #e5e5e5;
+  border-radius: 9999px;
+  height: 7px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-fill.high  { background: #171717; }
+.progress-fill.mid   { background: #737373; }
+.progress-fill.low   { background: #a3a3a3; }
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  color: #a3a3a3;
+  margin-top: 0.25rem;
+}
+
+/* Big score badge */
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  min-width: 110px;
+  text-align: center;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.score-badge.high { border-color: #404040; background: #fff; }
+.score-badge.mid  { border-color: #a3a3a3; background: #f5f5f5; }
+.score-badge.low  { border-color: #d4d4d4; background: #fafafa; }
+
+.badge-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.score-badge.high .badge-number { color: #171717; }
+.score-badge.mid  .badge-number { color: #525252; }
+.score-badge.low  .badge-number { color: #737373; }
+
+.badge-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.25rem;
+  color: #737373;
+}
+
+/* Step list */
+.steps-list {
+  padding: 0 1.5rem;
+}
+
+.step-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.step-item:last-child {
+  border-bottom: none;
+}
+
+.step-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.step-icon {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.step-icon.passed { background: #e5e5e5; color: #171717; }
+.step-icon.failed { background: #f0f0f0; color: #737373; }
+
+.step-body {
+  flex: 1;
+}
+
+.step-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.step-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a3a3a3;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.step-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #171717;
+}
+
+.needs-work {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #525252;
+  background: #f0f0f0;
+  border: 1px solid #d4d4d4;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.step-evidence {
+  font-size: 0.8125rem;
+  color: #525252;
+  margin-top: 0.4rem;
+  line-height: 1.55;
+}
+
+.step-quote {
+  margin-top: 0.625rem;
+  padding: 0.5rem 0.875rem;
+  background: #f5f5f5;
+  border-left: 3px solid #d4d4d4;
+  border-radius: 0 0.375rem 0.375rem 0;
+  font-size: 0.8125rem;
+  color: #737373;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.step-suggestion {
+  margin-top: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+}
+
+.suggestion-header {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #525252;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.375rem;
+}
+
+.suggestion-text {
+  font-size: 0.8125rem;
+  color: #404040;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── Typewriter cursor ──────────────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  background: currentColor;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .score-summary {
+    flex-direction: column-reverse;
+  }
+
+  .score-badge {
+    align-self: flex-start;
+    flex-direction: row;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .badge-number {
+    font-size: 1.75rem;
+  }
+}

@@ -1,4 +1,4 @@
-import Anthropic, { type Message } from '@anthropic-ai/sdk'
+import Anthropic from '@anthropic-ai/sdk'
 import type { CallScore } from '../src/types.js'
 
 const client = new Anthropic()
@@ -75,9 +75,9 @@ export async function scoreCall(transcript: string): Promise<CallScore> {
       },
     },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any) as Message
+  } as any) as Anthropic.Message
 
-  const textBlock = response.content.find((b) => b.type === 'text')
+  const textBlock = response.content.find((b: Anthropic.ContentBlock) => b.type === 'text')
   if (!textBlock || textBlock.type !== 'text') {
     throw new Error('No text response received from Claude')
   }
